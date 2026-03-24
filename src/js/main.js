@@ -1,5 +1,6 @@
 import { Carousel } from './carousel/index.js';
 import { createI18nService } from './i18n/bootstrap.js';
+import './mobile-menu.js';
 
 const i18nService = createI18nService();
 const activeLanguage = i18nService.setLanguage(
