@@ -43,6 +43,11 @@ export class Carousel {
     this.syncUi = this.syncUi.bind(this);
   }
 
+  /**
+   * Initializes the carousel instance and attaches event listeners.
+   * @returns {void}
+   * @throws {Error} If required child elements are missing.
+   */
   init() {
     if (!this.root || this.isInitialized) return;
 
@@ -66,6 +71,17 @@ export class Carousel {
     this.isInitialized = true;
   }
 
+  /**
+   * Resolves required DOM elements for carousel operation.
+   * @returns {{
+   * viewport: Element,
+   * track: Element,
+   * prevButton: Element,
+   * nextButton: Element,
+   * dotsRoot: Element
+   * }} Required DOM nodes.
+   * @throws {Error} If any required element is missing.
+   */
   getRequiredElements() {
     const requiredElements = {
       viewport: this.root.querySelector('[data-carousel-viewport]'),
@@ -89,6 +105,10 @@ export class Carousel {
     return /** @type {typeof requiredElements} */ (requiredElements);
   }
 
+  /**
+   * Binds UI and embla listeners.
+   * @returns {void}
+   */
   bindEvents() {
     if (!this.embla) return;
 
@@ -103,6 +123,10 @@ export class Carousel {
     window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
+  /**
+   * Unbinds all registered listeners.
+   * @returns {void}
+   */
   unbindEvents() {
     if (!this.embla) return;
 
@@ -117,6 +141,11 @@ export class Carousel {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  /**
+   * Executes callback only when embla is ready.
+   * @param {(embla: ReturnType<typeof EmblaCarousel>) => void} callback - Action callback.
+   * @returns {boolean} True when callback executed.
+   */
   withEmbla(callback) {
     if (!this.embla) return false;
 
@@ -124,12 +153,20 @@ export class Carousel {
     return true;
   }
 
+  /**
+   * Returns raw slide count in the track.
+   * @returns {number} Slide count.
+   */
   getSlidesCount() {
     if (!this.track) return 0;
 
     return this.track.children.length;
   }
 
+  /**
+   * Returns slides-per-view for the current viewport width.
+   * @returns {number} Slides-per-view value.
+   */
   getCurrentSlidesToShow() {
     const slides = getSlidesConfig(this.root, this.options);
 
@@ -144,6 +181,10 @@ export class Carousel {
     return slides.mobile;
   }
 
+  /**
+   * Updates CSS custom property used by layout sizing.
+   * @returns {void}
+   */
   updateSlidesToShow() {
     const slidesToShow = this.getCurrentSlidesToShow();
 
@@ -153,12 +194,20 @@ export class Carousel {
     );
   }
 
+  /**
+   * Checks whether loop mode should be enabled for current data.
+   * @returns {boolean} True when looping is allowed and useful.
+   */
   shouldUseLoop() {
     if (!this.options.loop) return false;
 
     return this.logicalSlideCount > this.getCurrentSlidesToShow();
   }
 
+  /**
+   * Returns embla options derived from current instance state.
+   * @returns {{ loop: boolean, align: CarouselOptions['align'], dragFree: boolean, containScroll: CarouselOptions['containScroll'] }} Embla options.
+   */
   getEmblaOptions() {
     return {
       loop: this.shouldUseLoop(),
@@ -168,6 +217,10 @@ export class Carousel {
     };
   }
 
+  /**
+   * Handles viewport resize and re-initializes embla if slides-per-view changed.
+   * @returns {void}
+   */
   handleResize() {
     const previous = this.root.style.getPropertyValue(
       '--carousel-slides-to-show'
@@ -182,32 +235,61 @@ export class Carousel {
     }
   }
 
+  /**
+   * Pointer-down handler used for drag UI state.
+   * @returns {void}
+   */
   handlePointerDown() {
     this.root.classList.add('is-dragging');
   }
 
+  /**
+   * Pointer-up handler used for drag UI state cleanup.
+   * @returns {void}
+   */
   handlePointerUp() {
     this.root.classList.remove('is-dragging');
   }
 
+  /**
+   * Scrolls one snap backward.
+   * @returns {void}
+   */
   handlePrevClick() {
     this.withEmbla(embla => embla.scrollPrev());
   }
 
+  /**
+   * Scrolls one snap forward.
+   * @returns {void}
+   */
   handleNextClick() {
     this.withEmbla(embla => embla.scrollNext());
   }
 
+  /**
+   * Handles embla re-initialization.
+   * @returns {void}
+   */
   handleReInit() {
     this.logicalSlideCount = this.getSlidesCount();
     this.createDots();
     this.syncUi();
   }
 
+  /**
+   * Handles dot selection.
+   * @param {number} logicalIndex - Logical slide index.
+   * @returns {void}
+   */
   handleDotSelect(logicalIndex) {
     this.scrollToLogical(logicalIndex);
   }
 
+  /**
+   * Renders dot navigation based on logical slide count.
+   * @returns {void}
+   */
   createDots() {
     this.withEmbla(embla => {
       const snapCount = embla.scrollSnapList().length;
@@ -220,10 +302,19 @@ export class Carousel {
     });
   }
 
+  /**
+   * Scrolls to the target logical slide index.
+   * @param {number} logicalIndex - Slide index in logical sequence.
+   * @returns {void}
+   */
   scrollToLogical(logicalIndex) {
     this.withEmbla(embla => embla.scrollTo(logicalIndex));
   }
 
+  /**
+   * Synchronizes button disabled state and active dot indicator.
+   * @returns {void}
+   */
   syncUi() {
     this.withEmbla(embla => {
       const canScroll = embla.canScrollPrev() || embla.canScrollNext();
@@ -246,6 +337,10 @@ export class Carousel {
     });
   }
 
+  /**
+   * Destroys the carousel instance and releases resources.
+   * @returns {void}
+   */
   destroy() {
     if (!this.isInitialized) return;
 
@@ -266,6 +361,11 @@ export class Carousel {
     this.isInitialized = false;
   }
 
+  /**
+   * Initializes all carousels matching selector.
+   * @param {string} [selector='[data-carousel]'] - Root selector.
+   * @returns {Carousel[]} Initialized carousel instances.
+   */
   static initAll(selector = '[data-carousel]') {
     const roots = document.querySelectorAll(selector);
 

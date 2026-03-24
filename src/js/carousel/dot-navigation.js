@@ -6,6 +6,11 @@ export class DotNavigation {
     this.listeners = [];
   }
 
+  /**
+   * Rebuilds dot buttons for the requested slide count.
+   * @param {number} count - Dot count.
+   * @returns {void}
+   */
   render(count) {
     const normalizedCount = count > 0 ? count : 0;
 
@@ -26,6 +31,10 @@ export class DotNavigation {
     }
   }
 
+  /**
+   * Removes existing dots and registered listeners.
+   * @returns {void}
+   */
   clear() {
     this.buttons.forEach((button, index) => {
       const listener = this.listeners[index];
@@ -40,6 +49,11 @@ export class DotNavigation {
     this.listeners = [];
   }
 
+  /**
+   * Marks active dot.
+   * @param {number} activeIndex - Logical index to activate.
+   * @returns {void}
+   */
   setActive(activeIndex) {
     this.buttons.forEach((button, index) => {
       const isActive = index === activeIndex;
@@ -49,10 +63,18 @@ export class DotNavigation {
     });
   }
 
+  /**
+   * Returns currently rendered dot count.
+   * @returns {number} Dot count.
+   */
   getCount() {
     return this.buttons.length;
   }
 
+  /**
+   * Disposes the navigation instance.
+   * @returns {void}
+   */
   destroy() {
     this.clear();
   }
