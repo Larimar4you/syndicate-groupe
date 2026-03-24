@@ -58,14 +58,23 @@ jobs:
           sed -n '1,220p' dist/index.html
 
       - name: Ensure partials were resolved
+        shell: bash
         run: |
-          if grep -R "<load " dist/*.html dist/**/*.html 2>/dev/null; then
-            echo "Found unresolved <load> tags in built HTML"
+          set -euo pipefail
+
+          unresolved="$(find dist -type f -name '*.html' -print0 | xargs -0 grep -n '<load ' || true)"
+
+          if [ -n "${unresolved}" ]; then
+            echo "Found unresolved <load> tags in built HTML:"
+            echo "${unresolved}"
             exit 1
           fi
 
       - name: Download Nu Html Checker
+        shell: bash
         run: |
+          set -euo pipefail
+
           curl -L -o vnu.zip https://github.com/validator/validator/releases/latest/download/vnu.jar.zip
           unzip -q vnu.zip -d vnu
 
@@ -74,10 +83,20 @@ jobs:
         run: |
           set -euo pipefail
 
+          VNU_JAR="$(find vnu -type f -name 'vnu.jar' | head -n 1)"
+
+          if [ -z "${VNU_JAR}" ]; then
+            echo "vnu.jar not found after unzip"
+            find vnu -maxdepth 5 -type f | sort
+            exit 1
+          fi
+
+          echo "Using validator jar: ${VNU_JAR}"
+
           output_file="$(mktemp)"
 
           set +e
-          java -jar ./vnu/dist/vnu.jar \
+          java -jar "${VNU_JAR}" \
             --errors-only \
             --skip-non-html \
             dist >"${output_file}" 2>&1
