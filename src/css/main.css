@@ -1,6 +1,13 @@
-html {
-  font-family: 'Manrope', sans-serif;
-}
+@import url('./carousel.css');
+@import url('./header.css');
+@import url('./hero.css');
+@import url('./about.css');
+@import url('./lessons.css');
+@import url('./proposal.css');
+@import url('./teachers.css');
+@import url('./application.css');
+@import url('./reviews.css');
+@import url('./footer.css');
 
 /* =========================
    VARIABLES
@@ -12,6 +19,11 @@ html {
   --color-green: #4dc274;
   --color-green-dark: #3da863;
   --color-white: #ffffff;
+  --color-mint-green: #bee8cc;
+  --color-light-gray: #f3f5f6;
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-review-text: #828486;
+  --color-reviews-description: #88898b;
 
   /* Typography */
   --font-main: 'Manrope', sans-serif;
@@ -190,16 +202,38 @@ section {
   }
 }
 
-/* =========================
-   IMPORTS OF SECTIONS
-========================= */
+/* Section title */
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-black);
+}
 
-@import url('./header.css');
-@import url('./hero.css');
-@import url('./about.css');
-@import url('./lessons.css');
-@import url('./proposal.css');
-@import url('./teachers.css');
-@import url('./application.css');
-@import url('./reviews.css');
-@import url('./footer.css');
+@media screen and (min-width: 768px) {
+  .section-title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+/* Text marker */
+.text-marker {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+}
+
+.text-marker::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  bottom: -3px;
+  left: -2px;
+  height: 20px;
+  border-radius: 8px;
+  background-color: var(--color-mint-green);
+  z-index: -1;
+}
