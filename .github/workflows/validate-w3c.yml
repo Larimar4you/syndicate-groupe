@@ -37,6 +37,65 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Download Nu Html Checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L -o vnu.zip https://github.com/validator/validator/releases/latest/download/vnu.jar.zip
+          unzip -q vnu.zip -d vnu
+
+      - name: Validate source CSS with W3C CSS Validator
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -d src/css ]; then
+            CSS_ROOT="src/css"
+          elif [ -d css ]; then
+            CSS_ROOT="css"
+          else
+            echo "Source CSS folder not found. Expected src/css or css"
+            exit 1
+          fi
+
+          mapfile -t css_files < <(find "${CSS_ROOT}" -type f -name "*.css" | sort)
+
+          if [ "${#css_files[@]}" -eq 0 ]; then
+            echo "No source CSS files found in ${CSS_ROOT}"
+            exit 1
+          fi
+
+          for css_file in "${css_files[@]}"; do
+            echo "Validating source CSS file: $css_file"
+
+            response_file="$(mktemp)"
+
+            curl -sS \
+              --data-urlencode "text@${css_file}" \
+              --data "output=json" \
+              "https://jigsaw.w3.org/css-validator/validator" \
+              -o "${response_file}"
+
+            if [ ! -s "${response_file}" ]; then
+              echo "Empty response from W3C CSS Validator"
+              exit 1
+            fi
+
+            errors=$(python3 -c "import json,sys; print(int(json.load(open(sys.argv[1], encoding='utf-8')).get('cssvalidation', {}).get('result', {}).get('errorcount', 0)))" "${response_file}")
+            warnings=$(python3 -c "import json,sys; print(int(json.load(open(sys.argv[1], encoding='utf-8')).get('cssvalidation', {}).get('result', {}).get('warningcount', 0)))" "${response_file}")
+
+            echo "Errors: ${errors}; Warnings: ${warnings}"
+
+            if [ "${errors}" -gt 0 ]; then
+              echo "Source CSS validation failed for ${css_file}"
+              cat "${response_file}"
+              exit 1
+            fi
+
+            rm -f "${response_file}"
+            sleep 1
+          done
+
       - name: Build Vite project
         run: npm run build
 
@@ -70,14 +129,6 @@ jobs:
             exit 1
           fi
 
-      - name: Download Nu Html Checker
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          curl -L -o vnu.zip https://github.com/validator/validator/releases/latest/download/vnu.jar.zip
-          unzip -q vnu.zip -d vnu
-
       - name: Validate HTML in dist
         shell: bash
         run: |
@@ -110,7 +161,7 @@ jobs:
             exit "${status}"
           fi
 
-      - name: Validate CSS with W3C CSS Validator
+      - name: Validate built CSS with W3C CSS Validator
         shell: bash
         run: |
           set -euo pipefail
@@ -123,13 +174,13 @@ jobs:
           fi
 
           for css_file in "${css_files[@]}"; do
-            echo "Validating CSS file: $css_file"
+            echo "Validating built CSS file: $css_file"
 
             response_file="$(mktemp)"
 
             curl -sS \
-              -F "file=@${css_file}" \
-              -F "output=json" \
+              --data-urlencode "text@${css_file}" \
+              --data "output=json" \
               "https://jigsaw.w3.org/css-validator/validator" \
               -o "${response_file}"
 
@@ -144,7 +195,7 @@ jobs:
             echo "Errors: ${errors}; Warnings: ${warnings}"
 
             if [ "${errors}" -gt 0 ]; then
-              echo "CSS validation failed"
+              echo "Built CSS validation failed for ${css_file}"
               cat "${response_file}"
               exit 1
             fi
