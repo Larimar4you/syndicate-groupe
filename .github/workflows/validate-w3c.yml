@@ -1,6 +1,7 @@
 name: Validate W3C HTML and CSS
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -14,85 +15,101 @@ on:
 
 jobs:
   validate:
+    name: Validate markup
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: ☕ Setup Java
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🏗 Build Vite project
+      - name: Build Vite project
         run: npm run build
 
-      - name: 🌐 Start static server for dist
+      - name: Ensure dist exists
         run: |
-          python3 -m http.server 4173 --directory dist &
-          sleep 3
+          if [ ! -d dist ]; then
+            echo "dist folder not found after build"
+            exit 1
+          fi
 
-      - name: ✅ Download Nu Html Checker
+      - name: Download Nu Html Checker
         run: |
           curl -L -o vnu.zip https://github.com/validator/validator/releases/latest/download/vnu.jar.zip
           unzip -q vnu.zip -d vnu
 
-      - name: 🔎 Validate built HTML with Nu Html Checker
+      - name: Validate HTML in dist
         run: |
           java -jar ./vnu/dist/vnu.jar \
             --errors-only \
-            --exit-zero-always \
-            http://127.0.0.1:4173/index.html | tee vnu-output.txt
+            --skip-non-html \
+            dist | tee vnu-output.txt
 
           if grep -E "Error:|Fatal Error:" vnu-output.txt > /dev/null; then
-            echo "❌ HTML validation failed"
+            echo "HTML validation failed"
             exit 1
           fi
 
-      - name: 🎨 Validate built CSS with W3C CSS Validator
+      - name: Validate CSS with W3C CSS Validator
         shell: bash
         run: |
           set -euo pipefail
 
           mapfile -t css_files < <(find dist -type f -name "*.css" | sort)
 
-          if [ ${#css_files[@]} -eq 0 ]; then
-            echo "❌ No CSS files found in dist"
+          if [ "${#css_files[@]}" -eq 0 ]; then
+            echo "No CSS files found in dist"
             exit 1
           fi
 
           for css_file in "${css_files[@]}"; do
-            css_url="http://127.0.0.1:4173/${css_file#dist/}"
-            echo "Validating CSS: $css_url"
+            echo "Validating CSS file: $css_file"
 
-            response="$(curl -sS --get \
-              --data-urlencode "uri=$css_url" \
-              --data "output=json" \
-              "https://jigsaw.w3.org/css-validator/validator")"
+            response_file="$(mktemp)"
 
-            echo "$response" > css-result.json
+            curl -sS \
+              -F "file=@${css_file}" \
+              -F "output=json" \
+              "https://jigsaw.w3.org/css-validator/validator" \
+              -o "${response_file}"
 
-            errors=$(python3 -c 'import json; print(json.load(open("css-result.json", encoding="utf-8"))["cssvalidation"]["result"]["errorcount"])')
-            warnings=$(python3 -c 'import json; print(json.load(open("css-result.json", encoding="utf-8"))["cssvalidation"]["result"].get("warningcount", 0))')
-
-            echo "Errors: $errors; Warnings: $warnings"
-
-            if [ "$errors" -gt 0 ]; then
-              echo "❌ CSS validation failed for $css_url"
-              cat css-result.json
+            if [ ! -s "${response_file}" ]; then
+              echo "Empty response from W3C CSS Validator"
               exit 1
             fi
+
+            python3 -c '
+import json, sys
+path = sys.argv[1]
+with open(path, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+result = data.get("cssvalidation", {}).get("result", {})
+errors = int(result.get("errorcount", 0))
+warnings = int(result.get("warningcount", 0))
+
+print(f"Errors: {errors}; Warnings: {warnings}")
+
+if errors > 0:
+    print("CSS validation failed")
+    sys.exit(1)
+' "${response_file}"
+
+            rm -f "${response_file}"
 
             sleep 1
           done
