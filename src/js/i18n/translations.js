@@ -6,6 +6,17 @@ import { SUPPORTED_LANGUAGE } from './constants.js';
  */
 export const TRANSLATIONS = Object.freeze({
   [SUPPORTED_LANGUAGE.EN]: {
+    hero: {
+      title: {
+        before: 'Discover the joy of learning',
+        marker: 'English',
+        after: 'with us!',
+      },
+      actions: {
+        apply: 'Leave an application',
+        scrollDown: 'Scroll down',
+      },
+    },
     reviews: {
       title: {
         before: 'What our',
@@ -37,6 +48,17 @@ export const TRANSLATIONS = Object.freeze({
     },
   },
   [SUPPORTED_LANGUAGE.UA]: {
+    hero: {
+      title: {
+        before: 'Відкрийте радість вивчення',
+        marker: 'англійської',
+        after: 'разом з нами!',
+      },
+      actions: {
+        apply: 'Залишити заявку',
+        scrollDown: 'Прокрутити вниз',
+      },
+    },
     reviews: {
       title: {
         before: 'Що кажуть наші',
