@@ -2,9 +2,15 @@ name: Validate W3C HTML and CSS
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - main-beta
+      - master
   push:
-    branches: [main]
+    branches:
+      - main
+      - main-beta
+      - master
 
 jobs:
   validate:
@@ -27,7 +33,7 @@ jobs:
           java-version: 21
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: 🏗 Build Vite project
         run: npm run build
@@ -77,20 +83,8 @@ jobs:
 
             echo "$response" > css-result.json
 
-            errors="$(python3 - <<'PY'
-import json
-with open("css-result.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-print(data["cssvalidation"]["result"]["errorcount"])
-PY
-)"
-            warnings="$(python3 - <<'PY'
-import json
-with open("css-result.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-print(data["cssvalidation"]["result"].get("warningcount", 0))
-PY
-)"
+            errors=$(python3 -c 'import json; print(json.load(open("css-result.json", encoding="utf-8"))["cssvalidation"]["result"]["errorcount"])')
+            warnings=$(python3 -c 'import json; print(json.load(open("css-result.json", encoding="utf-8"))["cssvalidation"]["result"].get("warningcount", 0))')
 
             echo "Errors: $errors; Warnings: $warnings"
 
