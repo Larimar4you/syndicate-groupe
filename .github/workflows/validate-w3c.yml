@@ -2,12 +2,9 @@ name: Validate W3C HTML and CSS
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
   push:
-    branches:
-      - main
-      - master
+    branches: [main]
 
 jobs:
   validate:
