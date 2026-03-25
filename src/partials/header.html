@@ -1,141 +1,264 @@
-<header>
+<header class="site-header" data-site-header>
   <div class="container header-container">
-    <nav class="header-nav">
+    <nav
+      class="header-nav"
+      aria-label="Primary navigation"
+      data-i18n-attr="aria-label:header.navigation.label"
+    >
       <a class="nav-logo" href="./index.html"
         >english<span class="nav-logo-accent">excellence</span>.</a
       >
 
       <ul class="nav-list">
         <li>
-          <a class="nav-link current" href="#about">About us</a>
+          <a class="nav-link is-active" href="#about" data-nav-link data-section="about" data-i18n="header.navigation.about">About us</a>
         </li>
         <li>
-          <a class="nav-link" href="#lessons">Our lessons</a>
+          <a class="nav-link" href="#lessons" data-nav-link data-section="lessons" data-i18n="header.navigation.lessons">Our lessons</a>
         </li>
         <li>
-          <a class="nav-link" href="#teachers">Teachers</a>
+          <a class="nav-link" href="#teachers" data-nav-link data-section="teachers" data-i18n="header.navigation.teachers">Teachers</a>
         </li>
         <li>
-          <a class="nav-link" href="#reviews">Reviews</a>
+          <a class="nav-link" href="#reviews" data-nav-link data-section="reviews" data-i18n="header.navigation.reviews">Reviews</a>
         </li>
         <li>
-          <a class="nav-link" href="#footer">Contact us</a>
+          <a class="nav-link" href="#footer" data-nav-link data-section="footer" data-i18n="header.navigation.contact">Contact us</a>
         </li>
       </ul>
     </nav>
 
-    <ul class="social-list">
-      <li class="social-list-item">
-        <a
-          class="social-link"
-          href="https://www.facebook.com/goITclub/"
-          target="_blank"
-          rel="noopener norefferer nofollow"
+    <div class="header-actions">
+      <div
+        class="language-dropdown language-dropdown-header"
+        data-language-dropdown
+      >
+        <button
+          class="language-dropdown-trigger"
+          type="button"
+          data-language-trigger
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label="Language switcher"
+          data-i18n-attr="aria-label:header.language.switcherLabel"
         >
-          <svg class="social-icon" width="28" height="28">
-            <use href="./img/sprite.svg#icon-facebook"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="social-list-item">
-        <a
-          class="social-link"
-          href="https://www.instagram.com/goitclub/"
-          target="_blank"
-          rel="noopener norefferer nofollow"
-        >
-          <svg class="social-icon" width="28" height="28">
-            <use href="./img/sprite.svg#icon-instagram"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="social-list-item">
-        <a
-          class="social-link"
-          href="https://www.youtube.com/c/GoIT"
-          target="_blank"
-          rel="noopener norefferer nofollow"
-        >
-          <svg class="social-icon" width="28" height="28">
-            <use href="./img/sprite.svg#icon-youtube"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
+          <span data-language-current>EN</span>
+        </button>
 
-    <button class="menu-btn" type="button" data-menu-open>
-      <svg class="menu-btn-icon" width="32" height="32">
-        <use href="./img/sprite.svg#icon-menu"></use>
-      </svg>
-    </button>
-  </div>
-
-  <div class="backdrop" data-menu>
-    <div class="mob-menu">
-      <button class="menu-btn-close" type="button" data-menu-close>
-        <svg class="menu-btn-close-icon" width="32" height="32">
-          <use href="./img/sprite.svg#icon-menu-close"></use>
-        </svg>
-      </button>
-
-      <div class="menu-list-wrap">
-        <ul class="menu-list">
-          <li class="menu-list-item">
-            <a href="#about" class="menu-link">About us</a>
+        <ul class="language-dropdown-list" role="listbox">
+          <li>
+            <button
+              class="language-dropdown-option is-active"
+              type="button"
+              role="option"
+              data-language-option
+              data-language="en"
+              aria-selected="true"
+              aria-label="Switch to English"
+              data-i18n="header.language.en"
+              data-i18n-attr="aria-label:header.language.selectEn"
+            >
+              EN
+            </button>
           </li>
-          <li class="menu-list-item">
-            <a href="#lessons" class="menu-link">Our lessons</a>
-          </li>
-          <li class="menu-list-item">
-            <a href="#teachers" class="menu-link">Teachers</a>
-          </li>
-          <li class="menu-list-item">
-            <a href="#reviews" class="menu-link">Reviews</a>
-          </li>
-          <li class="menu-list-item">
-            <a href="#footer" class="menu-link">Contact us</a>
+          <li>
+            <button
+              class="language-dropdown-option"
+              type="button"
+              role="option"
+              data-language-option
+              data-language="ua"
+              aria-selected="false"
+              aria-label="Switch to Ukrainian"
+              data-i18n="header.language.ua"
+              data-i18n-attr="aria-label:header.language.selectUa"
+            >
+              UA
+            </button>
           </li>
         </ul>
       </div>
 
-      <ul class="menu-social-list">
-        <li class="menu-social-list-item">
+      <ul class="social-list">
+        <li class="social-list-item">
           <a
-            class="menu-social-link"
+            class="social-link"
             href="https://www.facebook.com/goITclub/"
             target="_blank"
             rel="noopener norefferer nofollow"
           >
-            <svg class="menu-social-icon" width="26" height="26">
+            <svg class="social-icon" width="28" height="28">
               <use href="./img/sprite.svg#icon-facebook"></use>
             </svg>
           </a>
         </li>
-        <li class="menu-social-list-item">
+        <li class="social-list-item">
           <a
-            class="menu-social-link"
+            class="social-link"
             href="https://www.instagram.com/goitclub/"
             target="_blank"
             rel="noopener norefferer nofollow"
           >
-            <svg class="menu-social-icon" width="26" height="26">
+            <svg class="social-icon" width="28" height="28">
               <use href="./img/sprite.svg#icon-instagram"></use>
             </svg>
           </a>
         </li>
-        <li class="menu-social-list-item">
+        <li class="social-list-item">
           <a
-            class="menu-social-link"
+            class="social-link"
             href="https://www.youtube.com/c/GoIT"
             target="_blank"
             rel="noopener norefferer nofollow"
           >
-            <svg class="menu-social-icon" width="26" height="26">
+            <svg class="social-icon" width="28" height="28">
               <use href="./img/sprite.svg#icon-youtube"></use>
             </svg>
           </a>
         </li>
       </ul>
+
+      <button
+        class="menu-btn"
+        type="button"
+        data-menu-open
+        aria-label="Open menu"
+        data-i18n-attr="aria-label:header.menu.open"
+      >
+        <svg class="menu-btn-icon" width="32" height="32">
+          <use href="./img/sprite.svg#icon-menu"></use>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
+
+<div class="backdrop" data-menu>
+  <div class="mob-menu">
+    <button
+      class="menu-btn-close"
+      type="button"
+      data-menu-close
+      aria-label="Close menu"
+      data-i18n-attr="aria-label:header.menu.close"
+    >
+      <svg class="menu-btn-close-icon" width="32" height="32">
+        <use href="./img/sprite.svg#icon-menu-close"></use>
+      </svg>
+    </button>
+
+    <div class="menu-list-wrap">
+      <nav
+        aria-label="Mobile navigation"
+        data-i18n-attr="aria-label:header.mobileNavigation.label"
+      >
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <a href="#about" class="menu-link is-active" data-nav-link data-section="about" data-i18n="header.navigation.about">About us</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="#lessons" class="menu-link" data-nav-link data-section="lessons" data-i18n="header.navigation.lessons">Our lessons</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="#teachers" class="menu-link" data-nav-link data-section="teachers" data-i18n="header.navigation.teachers">Teachers</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="#reviews" class="menu-link" data-nav-link data-section="reviews" data-i18n="header.navigation.reviews">Reviews</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="#footer" class="menu-link" data-nav-link data-section="footer" data-i18n="header.navigation.contact">Contact us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div
+        class="language-dropdown language-dropdown-mobile"
+        data-language-dropdown
+      >
+        <button
+          class="language-dropdown-trigger language-dropdown-trigger-mobile"
+          type="button"
+          data-language-trigger
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label="Language switcher"
+          data-i18n-attr="aria-label:header.language.switcherLabel"
+        >
+          <span data-language-current>EN</span>
+        </button>
+
+        <ul class="language-dropdown-list language-dropdown-list-mobile" role="listbox">
+          <li>
+            <button
+              class="language-dropdown-option language-dropdown-option-mobile is-active"
+              type="button"
+              role="option"
+              data-language-option
+              data-language="en"
+              aria-selected="true"
+              aria-label="Switch to English"
+              data-i18n="header.language.en"
+              data-i18n-attr="aria-label:header.language.selectEn"
+            >
+              EN
+            </button>
+          </li>
+          <li>
+            <button
+              class="language-dropdown-option language-dropdown-option-mobile"
+              type="button"
+              role="option"
+              data-language-option
+              data-language="ua"
+              aria-selected="false"
+              aria-label="Switch to Ukrainian"
+              data-i18n="header.language.ua"
+              data-i18n-attr="aria-label:header.language.selectUa"
+            >
+              UA
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="menu-social-list">
+      <li class="menu-social-list-item">
+        <a
+          class="menu-social-link"
+          href="https://www.facebook.com/goITclub/"
+          target="_blank"
+          rel="noopener norefferer nofollow"
+        >
+          <svg class="menu-social-icon" width="26" height="26">
+            <use href="./img/sprite.svg#icon-facebook"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="menu-social-list-item">
+        <a
+          class="menu-social-link"
+          href="https://www.instagram.com/goitclub/"
+          target="_blank"
+          rel="noopener norefferer nofollow"
+        >
+          <svg class="menu-social-icon" width="26" height="26">
+            <use href="./img/sprite.svg#icon-instagram"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="menu-social-list-item">
+        <a
+          class="menu-social-link"
+          href="https://www.youtube.com/c/GoIT"
+          target="_blank"
+          rel="noopener norefferer nofollow"
+        >
+          <svg class="menu-social-icon" width="26" height="26">
+            <use href="./img/sprite.svg#icon-youtube"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

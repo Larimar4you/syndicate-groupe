@@ -28,23 +28,6 @@
   color: #121417;
 }
 
-.text-marker {
-  position: relative;
-  z-index: 1;
-}
-
-.text-marker::after {
-  content: '';
-  position: absolute;
-  left: -4px;
-  right: -4px;
-  bottom: 4px;
-  height: 12px;
-  border-radius: 8px;
-  background-color: #bee8cc;
-  z-index: -1;
-}
-
 .application-subtitle {
   max-width: 335px;
   margin: 0 auto;

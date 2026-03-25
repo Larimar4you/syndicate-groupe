@@ -1,34 +1,37 @@
-<section class="proposal">
+<section class="proposal" id="proposal">
   <div class="container proposal-container">
     <div class="proposal-wrapper">
-      <h2 class="section-title visually-hidden">
+      <h2 class="section-title visually-hidden" data-i18n="proposal.hiddenTitle">
         Proposal to leave an application
       </h2>
       <p class="proposal-text">
-        Master the <span class="accent">Language</span> with Our English
-        Package!
+        <span data-i18n="proposal.text.before">Master the</span>
+        <span class="accent" data-i18n="proposal.text.marker">Language</span>
+        <span data-i18n="proposal.text.after">with Our English Package!</span>
       </p>
       <div class="card-bg-wrapper">
         <div class="bg-layer layer-1"></div>
         <div class="bg-layer layer-2"></div>
         <div class="white-card">
           <div class="card-content">
-            <h3 class="card-title">Power of English</h3>
+            <h3 class="card-title" data-i18n="proposal.card.title">Power of English</h3>
             <ul class="features-list">
-              <li class="features-list-item">
+              <li class="features-list-item" data-i18n="proposal.card.features.first">
                 Dive into captivating lessons designed to stimulate your
                 curiosity.
               </li>
-              <li class="features-list-item">
+              <li class="features-list-item" data-i18n="proposal.card.features.second">
                 Learn in a nurturing setting where every student's progress
                 matters.
               </li>
-              <li class="features-list-item">
+              <li class="features-list-item" data-i18n="proposal.card.features.third">
                 Experience the satisfaction of real progress as your language
                 skills and confidence grow with every session.
               </li>
             </ul>
-            <a href="#application-form" class="button">Leave an application</a>
+            <a href="#application" class="button" data-i18n="proposal.card.action">
+              Leave an application
+            </a>
           </div>
           <img
             srcset="
@@ -37,6 +40,7 @@
             "
             src="img/proposal/tall_stack_of_books.webp"
             alt="Stack of colorful 3D rendered books"
+            data-i18n-attr="alt:proposal.card.imageAlt"
             class="card-image"
             width="214"
             height="263"
