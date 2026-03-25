@@ -2,11 +2,12 @@
   <div class="container application-container">
     <div class="application-heading">
       <h2 class="application-title">
-        <span>Leave an</span>
-        <span class="text-marker">application</span>
+        <span data-i18n="application.title.before">Leave an</span>
+        <span class="text-marker" data-i18n="application.title.marker">application</span>
       </h2>
-      <p class="application-subtitle">
-        Please use the form below to contact us. Enter your name, email, and message and we'll get back to you shortly.
+      <p class="application-subtitle" data-i18n="application.subtitle">
+        Please use the form below to contact us. Enter your name, email, and
+        message and we'll get back to you shortly.
       </p>
     </div>
 
@@ -16,13 +17,14 @@
           class="application-image"
           src="/img/application/application-girl.webp"
           alt="Girl studying online"
+          data-i18n-attr="alt:application.imageAlt"
           width="492"
           height="578"
-        >
+        />
 
         <div class="application-stats">
           <p class="application-stats-number">1000</p>
-          <p class="application-stats-text">
+          <p class="application-stats-text" data-i18n="application.stats.text">
             of our online English language lessons! This journey has been full
             of discovery, growth and unforgettable moments, and we are happy to
             share this joyful event with you.
@@ -31,84 +33,88 @@
       </div>
 
       <div class="application-form-wrapper">
-        <form class="application-form">
+        <form class="application-form" novalidate>
           <input
             class="application-input"
             type="text"
             name="name"
             placeholder="Name"
+            data-i18n-attr="placeholder:application.form.placeholders.name"
             required
             pattern="^[A-Za-zА-Яа-яІіЇїЄє\s'-]{2,}$"
-          >
+          />
 
           <input
             class="application-input"
             type="email"
             name="email"
             placeholder="Email"
+            data-i18n-attr="placeholder:application.form.placeholders.email"
             required
-          >
+          />
 
           <input
             class="application-input"
             type="tel"
             name="phone"
             placeholder="Phone"
+            data-i18n-attr="placeholder:application.form.placeholders.phone"
             required
             pattern="^\+?[0-9\s\-()]{7,20}$"
-          >
+          />
 
           <textarea
             class="application-textarea"
             name="comment"
             placeholder="Comment"
+            data-i18n-attr="placeholder:application.form.placeholders.comment"
             required
           ></textarea>
 
           <fieldset class="application-teachers">
-            <legend class="application-legend">Choose a teacher</legend>
+            <legend class="application-legend" data-i18n="application.form.teacherLegend">Choose a teacher</legend>
 
             <ul class="application-teachers-list">
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Maria" checked>
+                  <input class="teacher-radio" type="radio" name="teacher" value="Maria" checked />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name">Maria</span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.maria">Maria</span>
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Artem">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Artem" />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name">Artem</span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.artem">Artem</span>
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Ilona">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Ilona" />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name">Ilona</span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.ilona">Ilona</span>
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Volodymyr">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Volodymyr" />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name">Volodymyr</span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.volodymyr">Volodymyr</span>
                 </label>
               </li>
             </ul>
           </fieldset>
 
-          <button class="application-submit" type="submit">Send</button>
+          <button class="application-submit" type="submit" data-i18n="application.form.submit">Send</button>
 
           <p class="application-privacy">
-            By clicking on “Send” button, you agree to our
-            <a href="#">Privacy Policy</a>, and allow Promodo to use this
-            information for marketing purposes.
+            <span data-i18n="application.form.privacy.before">By clicking on "Send" button, you agree to our</span>
+            <a href="#" data-i18n="application.form.privacy.link">Privacy Policy</a>
+            <span data-i18n="application.form.privacy.after">and allow Promodo to use this information for marketing purposes.</span>
           </p>
         </form>
       </div>
