@@ -12,7 +12,7 @@
 .nav-logo {
   display: block;
   padding: 20px 0;
-  color: #121417;
+  color: var(--color-black);
   font-family: Manrope;
   font-size: 20px;
   font-style: normal;
@@ -21,7 +21,7 @@
 }
 
 .nav-logo-accent {
-  color: #4DC274;
+  color: var(--color-green);
 }
 
 .nav-list,
@@ -36,7 +36,7 @@
 
 .menu-btn-icon {
   display: block;
-  stroke: #121417;
+  stroke: var(--color-black);
 }
 
 @media screen and (min-width: 768px) {
@@ -48,15 +48,8 @@
 
 @media screen and (min-width: 1280px) {
   .nav-logo {
-    display: block;
     padding: 28px 0;
     margin-right: 137.5px;
-    color: #121417;
-    font-family: Manrope;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
   }
 
   .nav-list {
@@ -68,7 +61,7 @@
   .nav-link {
     display: block;
     padding: 33px 0;
-    color: #121417;
+    color: var(--color-black);
     font-family: Manrope;
     font-size: 14px;
     font-style: normal;
@@ -87,7 +80,7 @@
     bottom: 29px;
     width: 37px;
     height: 2px;
-    background-color: #4DC274;
+    background-color: var(--color-green);
   }
 
   .social-list {
@@ -109,12 +102,12 @@
 
   .social-link:hover .social-icon,
   .social-link:focus .social-icon {
-    fill: #4DC274;
+    fill: var(--color-green);
     border-color: rgba(77, 194, 116, 0.10);
   }
 
   .social-icon {
-    fill: #121417;
+    fill: var(--color-black);
     opacity: 0.8;
   }
 
@@ -157,7 +150,7 @@
   width: 240px;
   height: 100vh;
   padding: 20px;
-  background-color: #4DC274;
+  background-color: var(--color-green);
 }
 
 .menu-btn-close {
@@ -172,7 +165,7 @@
 }
 
 .menu-btn-close-icon {
-  stroke: #FFFFFF;
+  stroke: var(--color-white);
 }
 
 .menu-list-wrap {
@@ -188,7 +181,7 @@
 }
 
 .menu-link {
-  color: #FFF;
+  color: var(--color-white);
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
@@ -213,7 +206,7 @@
 }
 
 .menu-social-icon {
-  fill: #FFFFFF;
+  fill: var(--color-white);
 }
 
 @media screen and (min-width: 768px) {
