@@ -1,0 +1,143 @@
+name: Validate HTML and CSS
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+      - main-beta
+      - master
+  push:
+    branches:
+      - main
+      - main-beta
+      - master
+
+jobs:
+  validate:
+    name: Validate markup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Stylelint
+        run: npm install --save-dev stylelint stylelint-config-standard
+
+      - name: Create Stylelint config
+        run: |
+          cat > .stylelintrc.json <<'EOF'
+          {
+            "rules": {
+              "no-empty-source": null,
+              "declaration-property-value-no-unknown": true,
+              "block-no-empty": true,
+              "color-no-invalid-hex": true,
+              "comment-no-empty": true,
+              "string-no-newline": true,
+              "unit-no-unknown": true,
+              "property-no-unknown": true,
+              "selector-pseudo-class-no-unknown": true,
+              "selector-pseudo-element-no-unknown": true,
+              "media-query-no-invalid": true
+            }
+          }
+          EOF
+
+      - name: Validate source CSS with Stylelint
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -d src/css ]; then
+            CSS_ROOT="src/css"
+          elif [ -d css ]; then
+            CSS_ROOT="css"
+          else
+            echo "Source CSS folder not found. Expected src/css or css"
+            exit 1
+          fi
+
+          mapfile -t css_files < <(find "${CSS_ROOT}" -type f -name "*.css" ! -size 0 | sort)
+
+          if [ "${#css_files[@]}" -eq 0 ]; then
+            echo "No non-empty source CSS files found in ${CSS_ROOT}"
+            exit 0
+          fi
+
+          npx stylelint "${CSS_ROOT}/**/*.css" --allow-empty-input
+
+      - name: Build Vite project
+        run: npm run build
+
+      - name: Ensure dist exists
+        run: |
+          if [ ! -d dist ]; then
+            echo "dist folder not found after build"
+            exit 1
+          fi
+
+      - name: Ensure partials were resolved
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          unresolved="$(find dist -type f -name '*.html' -print0 | xargs -0 grep -n '<load ' || true)"
+
+          if [ -n "${unresolved}" ]; then
+            echo "Found unresolved <load> tags in built HTML:"
+            echo "${unresolved}"
+            exit 1
+          fi
+
+      - name: Download Nu Html Checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L -o vnu.zip https://github.com/validator/validator/releases/latest/download/vnu.jar.zip
+          unzip -q vnu.zip -d vnu
+
+      - name: Validate HTML in dist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VNU_JAR="$(find vnu -type f -name 'vnu.jar' | head -n 1)"
+
+          if [ -z "${VNU_JAR}" ]; then
+            echo "vnu.jar not found after unzip"
+            find vnu -maxdepth 5 -type f | sort
+            exit 1
+          fi
+
+          java -jar "${VNU_JAR}" --errors-only --skip-non-html dist
+
+      - name: Validate built CSS with Stylelint
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -t css_files < <(find dist -type f -name "*.css" ! -size 0 | sort)
+
+          if [ "${#css_files[@]}" -eq 0 ]; then
+            echo "No non-empty built CSS files found in dist"
+            exit 0
+          fi
+
+          npx stylelint "dist/**/*.css" --allow-empty-input

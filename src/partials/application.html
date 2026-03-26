@@ -1,104 +1,123 @@
 <section class="application" id="application">
   <div class="container application-container">
-
-    <div class="application-image-wrapper">
-      <img
-        src="../img/application/application-girl.webp"
-        alt="Student during online English lesson"
-        class="application-image"
-      >
-
-      <div class="application-stats">
-        <p class="application-stats-number">1000</p>
-        <p class="application-stats-text">
-          of our online English language lessons!<br>
-          A journey full of discovery, growth, and unforgettable moments.
-        </p>
-      </div>
+    <div class="application-heading">
+      <h2 class="application-title">
+        <span data-i18n="application.title.before">Leave an</span>
+        <span class="text-marker" data-i18n="application.title.marker">application</span>
+      </h2>
+      <p class="application-subtitle" data-i18n="application.subtitle">
+        Please use the form below to contact us. Enter your name, email, and
+        message and we'll get back to you shortly.
+      </p>
     </div>
 
-    <!-- Form -->
-    <div class="application-form-wrapper">
-      <h2 class="application-title">Leave an application</h2>
+    <div class="application-content">
+      <div class="application-image-wrapper">
+        <img
+          class="application-image"
+          src="/img/application/application-girl.webp"
+          alt="Girl studying online"
+          data-i18n-attr="alt:application.imageAlt"
+          width="492"
+          height="578"
+        />
 
-      <p class="application-subtitle">
-        Please use the form below to contact us. Enter your name, email, and message and we'll get back to you shortly.
-      </p>
+        <div class="application-stats">
+          <p class="application-stats-number">1000</p>
+          <p class="application-stats-text" data-i18n="application.stats.text">
+            of our online English language lessons! This journey has been full
+            of discovery, growth and unforgettable moments, and we are happy to
+            share this joyful event with you.
+          </p>
+        </div>
+      </div>
 
-      <form class="application-form">
-        <label class="application-label">
-          <span class="application-text">Name</span>
+      <div class="application-form-wrapper">
+        <form class="application-form" novalidate>
           <input
+            class="application-input"
             type="text"
             name="name"
-            class="application-input"
-            placeholder="Enter your name"
+            placeholder="Name"
+            data-i18n-attr="placeholder:application.form.placeholders.name"
             required
-          >
-        </label>
+            pattern="^[A-Za-zА-Яа-яІіЇїЄє\s'-]{2,}$"
+          />
 
-        <label class="application-label">
-          <span class="application-text">Email</span>
           <input
+            class="application-input"
             type="email"
             name="email"
-            class="application-input"
-            placeholder="Enter your email"
+            placeholder="Email"
+            data-i18n-attr="placeholder:application.form.placeholders.email"
             required
-          >
-        </label>
+          />
 
-        <label class="application-label">
-          <span class="application-text">Phone</span>
           <input
+            class="application-input"
             type="tel"
             name="phone"
-            class="application-input"
-            placeholder="Enter your phone"
+            placeholder="Phone"
+            data-i18n-attr="placeholder:application.form.placeholders.phone"
             required
-          >
-        </label>
+            pattern="^\+?[0-9\s\-()]{7,20}$"
+          />
 
-        <label class="application-label">
-          <span class="application-text">Comment</span>
           <textarea
-            name="comment"
             class="application-textarea"
-            placeholder="Your message"
+            name="comment"
+            placeholder="Comment"
+            data-i18n-attr="placeholder:application.form.placeholders.comment"
+            required
           ></textarea>
-        </label>
 
-        <fieldset class="application-fieldset">
-          <legend class="application-legend">Choose a teacher</legend>
+          <fieldset class="application-teachers">
+            <legend class="application-legend" data-i18n="application.form.teacherLegend">Choose a teacher</legend>
 
-          <label class="application-radio">
-            <input type="radio" name="teacher" value="Maria" checked >
-            <span>Maria</span>
-          </label>
+            <ul class="application-teachers-list">
+              <li>
+                <label class="teacher-label">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Maria" checked />
+                  <span class="teacher-mark"></span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.maria">Maria</span>
+                </label>
+              </li>
 
-          <label class="application-radio">
-            <input type="radio" name="teacher" value="Artem" >
-            <span>Artem</span>
-          </label>
+              <li>
+                <label class="teacher-label">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Artem" />
+                  <span class="teacher-mark"></span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.artem">Artem</span>
+                </label>
+              </li>
 
-          <label class="application-radio">
-            <input type="radio" name="teacher" value="Ilona" >
-            <span>Ilona</span>
-          </label>
+              <li>
+                <label class="teacher-label">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Ilona" />
+                  <span class="teacher-mark"></span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.ilona">Ilona</span>
+                </label>
+              </li>
 
-          <label class="application-radio">
-            <input type="radio" name="teacher" value="Volodymyr" >
-            <span>Volodymyr</span>
-          </label>
-        </fieldset>
+              <li>
+                <label class="teacher-label">
+                  <input class="teacher-radio" type="radio" name="teacher" value="Volodymyr" />
+                  <span class="teacher-mark"></span>
+                  <span class="teacher-name" data-i18n="application.form.teacherNames.volodymyr">Volodymyr</span>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
 
-        <button type="submit" class="application-submit">Send</button>
+          <button class="application-submit" type="submit" data-i18n="application.form.submit">Send</button>
 
-        <p class="application-privacy">
-          By clicking on “Send” button, you agree to our Privacy Policy,
-          and allow Promodo to use this information for marketing purposes.
-        </p>
-      </form>
+          <p class="application-privacy">
+            <span data-i18n="application.form.privacy.before">By clicking on "Send" button, you agree to our</span>
+            <a href="#" data-i18n="application.form.privacy.link">Privacy Policy</a>
+            <span data-i18n="application.form.privacy.after">and allow Promodo to use this information for marketing purposes.</span>
+          </p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
