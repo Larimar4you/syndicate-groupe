@@ -62,6 +62,38 @@ export const TRANSLATIONS = Object.freeze({
         },
       },
     },
+    lessons: {
+      title: {
+        before: 'Our',
+        marker: 'lessons',
+      },
+      description:
+        'Our lessons are carefully structured and interactive, designed to promote rapid language acquisition through practical tasks and real-world scenarios',
+      cards: {
+        practice: {
+          name: 'Practice',
+          price: '40$',
+          period: '/ month',
+          description:
+            'This plan offers an opportunity for learners to engage in collaborative language exercises and group activities, boosting their conversational skills and confidence in using English.',
+        },
+        standard: {
+          name: 'Standard',
+          price: '70$',
+          period: '/ month',
+          description:
+            'Our standard package provides a balanced learning approach that covers all key areas of English language — reading, writing, listening, and speaking. It is a set of basic knowledge and skills.',
+        },
+        individual: {
+          name: 'Individual',
+          price: '99$',
+          period: '/ month',
+          description:
+            "We offer a tailored learning experience with individualized instruction that focuses on a learner's specific language goals and challenges, offering personal feedback.",
+        },
+      },
+      button: 'Leave an application',
+    },
     teachers: {
       title: {
         before: 'Meet our',
@@ -215,6 +247,38 @@ export const TRANSLATIONS = Object.freeze({
             'Відчуйте справжнє задоволення від прогресу, коли мовні навички та впевненість зростають із кожним заняттям.',
         },
       },
+    },
+    lessons: {
+      title: {
+        before: 'Наші',
+        marker: 'уроки',
+      },
+      description:
+        'Наші уроки ретельно структуровані та інтерактивні — вони створені для швидкого засвоєння мови через практичні завдання та реальні ситуації.',
+      cards: {
+        practice: {
+          name: 'Практика',
+          price: '40$',
+          period: '/ місяць',
+          description:
+            'Цей план дає можливість навчатись у групі: виконувати спільні мовні вправи та активності, які розвивають розмовні навички та впевненість у використанні англійської.',
+        },
+        standard: {
+          name: 'Стандарт',
+          price: '70$',
+          period: '/ місяць',
+          description:
+            'Стандартний пакет забезпечує збалансований підхід до навчання, охоплюючи всі ключові аспекти англійської: читання, письмо, аудіювання та говоріння. Це база знань і навичок.',
+        },
+        individual: {
+          name: 'Індивідуальний',
+          price: '99$',
+          period: '/ місяць',
+          description:
+            'Ми пропонуємо персоналізоване навчання з індивідуальними заняттями, які зосереджені на конкретних мовних цілях і труднощах студента з особистим зворотним звʼязком.',
+        },
+      },
+      button: 'Залишити заявку',
     },
     teachers: {
       title: {
