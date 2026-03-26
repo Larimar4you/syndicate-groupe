@@ -128,7 +128,9 @@
   color: var(--color-white);
 
   cursor: pointer;
-  transition: background-color var(--transition), color var(--transition);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 
   margin-top: auto;
 }
@@ -148,8 +150,8 @@
 
 .lessons-btn--featured:hover,
 .lessons-btn--featured:focus {
-  background-color: var(--color-white);
-  border-color: var(--color-white);
+  background-color: #3bb363;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* =====================
