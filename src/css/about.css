@@ -1,0 +1,232 @@
+/* ===========================
+   ABOUT SECTION — DESKTOP (1280px+)
+   =========================== */
+
+.about_container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 128px;
+}
+
+
+.about_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.about_title {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #121417;
+    margin: 0;
+}
+
+.about_title-line {
+    display: block;
+    width: 62px;
+    height: 20px;
+    background-color: #bee8cc;
+    border-radius: 8px;
+    margin-top: -14px;
+}
+
+.about_subtitle {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: center;
+    color: rgba(18, 20, 23, 0.5);
+    margin: 0;
+    max-width: 658px;
+}
+
+.about_content {
+    display: grid;
+    grid-template-columns: 1fr 310px;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.about_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.about_item {
+    background-color: #f3f5f6;
+    border-radius: 30px;
+    padding: 32px;
+    min-height: 160px;
+    box-sizing: border-box;
+}
+
+.about_item-number {
+    display: block;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    color: #4dc274;
+    margin-bottom: 12px;
+}
+
+.about_item-text {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #121417;
+    margin: 0;
+}
+
+.about_image-block {
+    background-color: #4dc274;
+    border-radius: 30px;
+    width: 310px;
+    min-height: 352px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about_image {
+    display: block;
+    width: 255px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ===========================
+   TABLET (768px — 1279px)
+   =========================== */
+@media (max-width: 1279px) {
+    .about_container {
+        max-width: 768px;
+        padding: 0 32px;
+    }
+
+    .about_title {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .about_content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .about_list {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .about_item {
+        min-height: 160px;
+        border-radius: 30px;
+    }
+
+    .about_item-number {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+    .about_item-text {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .about_image-block {
+        width: 100%;
+        min-height: 243px;
+        border-radius: 30px;
+    }
+
+    .about_image {
+        width: 255px;
+    }
+}
+
+/* ===========================
+   MOBILE (375px — 767px)
+   =========================== */
+@media (max-width: 767px) {
+    .about_container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .about_header {
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .about_title {
+        font-size: 32px;
+        line-height: 36px;
+    }
+
+    .about_title-line {
+        width: 39px;
+        height: 12px;
+        margin-top: -10px;
+    }
+
+    .about_subtitle {
+        font-size: 14px;
+        line-height: 24px;
+        max-width: 100%;
+    }
+
+    .about_content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .about_list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .about_item {
+        width: 100%;
+        min-height: 160px;
+        border-radius: 16px;
+        padding: 24px 32px;
+    }
+
+    .about_item-number {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+    .about_item-text {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .about_image-block {
+        width: 100%;
+        min-height: 313px;
+        border-radius: 16px;
+    }
+
+    .about_image {
+        width: 255px;
+    }
+}
