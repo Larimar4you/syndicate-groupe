@@ -13,8 +13,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- LCP image preload -->
+    <link
+      rel="preload"
+      as="image"
+      href="/syndicate-groupe/assets/studing-girl-mobile-D8dm8NZs.jpg"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/syndicate-groupe/assets/studing-girl-tablet-CQxMlCdh.jpg"
+      media="(min-width: 768px) and (max-width: 1199px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/syndicate-groupe/assets/studing-girl-BG80HC9S.jpg"
+      media="(min-width: 1200px)"
     />
 
     <!-- Normalize -->
@@ -822,9 +853,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.anna">
+                    <h3 class="reviews-name" data-i18n="reviews.names.anna">
                       Anna
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -854,9 +885,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.mykhailo">
+                    <h3 class="reviews-name" data-i18n="reviews.names.mykhailo">
                       Mykhailo
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -885,9 +916,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.victoria">
+                    <h3 class="reviews-name" data-i18n="reviews.names.victoria">
                       Victoria
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -917,9 +948,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.anna">
+                    <h3 class="reviews-name" data-i18n="reviews.names.anna">
                       Anna
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -949,9 +980,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.mykhailo">
+                    <h3 class="reviews-name" data-i18n="reviews.names.mykhailo">
                       Mykhailo
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -980,9 +1011,9 @@
                     decoding="async"
                   />
                   <div class="reviews-person-meta">
-                    <p class="reviews-name" data-i18n="reviews.names.victoria">
+                    <h3 class="reviews-name" data-i18n="reviews.names.victoria">
                       Victoria
-                    </p>
+                    </h3>
                     <p class="reviews-role" data-i18n="reviews.role.student">
                       Student
                     </p>
@@ -1022,8 +1053,7 @@
 </section>
 
     </main>
-    <section class="footer" id="footer">...</section>
-
+    <footer class="footer" id="footer">...</footer>
 
 
     <button id="toTopBtn" class="to-top-btn" aria-label="To top">
