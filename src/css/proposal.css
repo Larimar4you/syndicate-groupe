@@ -1,7 +1,7 @@
 .proposal-wrapper {
     padding: 40px 20px;
     border-radius: 30px;
-    background: linear-gradient(80deg, #4dc274 0%, #bee8cc 100%);
+    background: linear-gradient(80deg, var(--color-green) 0%, var(--color-mint-green) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -67,6 +67,9 @@
 }
 
 .features-list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.42857;
@@ -76,6 +79,23 @@
 
 .features-list-item:not(:last-child) {
     margin-bottom: 16px;
+}
+
+.features-checkbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: white;
+    background-color: var(--color-green);
+}
+
+.features-checkbox svg {
+    width: 10px;
+    height: 8px;
 }
 
 .proposal .button {
@@ -124,8 +144,19 @@
     }
 
     .features-list-item {
+        gap: 10px;
         font-size: 20px;
         line-height: 1.2;
+    }
+
+    .features-checkbox {
+        width: 28px;
+        height: 28px;
+    }
+
+    .features-checkbox svg {
+        width: 15px;
+        height: 12px;
     }
 
     .proposal .button {
@@ -173,8 +204,17 @@
         gap: 40px;
     }
 
+    .features-list-item {
+        gap: 16px;
+    }
+
+    .features-list-item:nth-child(2) {
+        width: 581px;
+    }
+
     .card-image {
         right: 0;
+        bottom: 80px;
     }
 
 }
