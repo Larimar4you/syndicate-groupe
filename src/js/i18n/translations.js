@@ -62,6 +62,21 @@ export const TRANSLATIONS = Object.freeze({
         },
       },
     },
+    about: {
+      title: {
+        before: 'About',
+        marker: 'Us',
+      },
+      subtitle:
+        'We are dedicated to providing engaging and effective English language courses in a supportive and stimulating learning environment',
+      items: {
+        first: 'Expert, innovative teaching staff',
+        second: 'Wide range of course levels and options',
+        third: 'Multicultural learning environment',
+        fourth: 'Comprehensive language support services',
+      },
+      imageAlt: 'English learning memoji',
+    },
     lessons: {
       title: {
         before: 'Our',
@@ -247,6 +262,21 @@ export const TRANSLATIONS = Object.freeze({
             'Відчуйте справжнє задоволення від прогресу, коли мовні навички та впевненість зростають із кожним заняттям.',
         },
       },
+    },
+    about: {
+      title: {
+        before: 'Про',
+        marker: 'нас',
+      },
+      subtitle:
+        'Ми прагнемо надавати захопливі та ефективні курси англійської мови в підтримувальному й стимулювальному навчальному середовищі.',
+      items: {
+        first: 'Експертний та інноваційний викладацький склад',
+        second: 'Широкий вибір рівнів і форматів навчання',
+        third: 'Мультикультурне навчальне середовище',
+        fourth: 'Комплексна підтримка у вивченні мови',
+      },
+      imageAlt: 'Мемоджі про вивчення англійської',
     },
     lessons: {
       title: {
