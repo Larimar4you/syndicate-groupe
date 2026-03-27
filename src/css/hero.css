@@ -28,7 +28,7 @@
   font-weight: 700;
   font-size: 60px;
   line-height: 70px;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .hero-title-accent {
@@ -49,8 +49,8 @@
   font-size: 18px;
   line-height: 28px;
   text-decoration: none;
-  color: #ffffff;
-  background-color: #4dc274;
+  color: var(--color-white);
+  background-color: var(--color-green);
 
   transition: background-color 250ms ease;
 }
@@ -58,8 +58,8 @@
 .hero-button:hover,
 .hero-button:focus-visible,
 .hero-button:active {
-  color: #ffffff;
-  background-color: #38ae5f;
+  color: var(--color-white);
+  background-color: var(--color-green-dark);
   outline: none;
 }
 
@@ -76,8 +76,8 @@
 
   border-radius: 50%;
   text-decoration: none;
-  background-color: #ffffff;
-  color: #4dc274;
+  background-color: var(--color-white);
+  color: var(--color-green);
 
   transition: background-color 250ms ease, color 250ms ease;
 }
@@ -85,8 +85,8 @@
 .hero-scroll-btn:hover,
 .hero-scroll-btn:focus-visible,
 .hero-scroll-btn:active {
-  background-color: #4dc274;
-  color: #ffffff;
+  background-color: var(--color-green);
+  color: var(--color-white);
   outline: none;
 }
 
@@ -94,7 +94,7 @@
   display: block;
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1280px) {
   .hero {
     padding-top: 32px;
   }
@@ -124,7 +124,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .hero {
     padding-top: 8px;
   }
