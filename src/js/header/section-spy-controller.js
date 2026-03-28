@@ -2,6 +2,8 @@ import {
   ACTIVE_NAV_LINK_CLASS,
   HEADER_HEIGHT_VARIABLE,
   SCROLLED_CLASS,
+  SECTION_SPY_MIN_TRIGGER_GAP,
+  SECTION_SPY_VIEWPORT_TRIGGER_RATIO,
 } from './constants.js';
 
 export class SectionSpyController {
@@ -11,6 +13,8 @@ export class SectionSpyController {
     this.documentRef = config.documentRef;
     this.windowRef = config.windowRef;
     this.sectionOrder = this.buildSectionOrder(this.navigationLinks);
+    this.navigationLinkClickHandlers = new Map();
+    this.isInitialized = false;
 
     this.isScrollUpdateQueued = false;
     this.handleResize = this.handleResize.bind(this);
@@ -19,19 +23,22 @@ export class SectionSpyController {
   }
 
   init() {
-    if (this.sectionOrder.length === 0) return;
+    if (this.isInitialized || this.sectionOrder.length === 0) return;
 
     this.syncHeaderHeight();
     this.syncHeaderScrolledState();
     this.setActiveSection(this.sectionOrder[0]);
 
     this.navigationLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      const handleLinkClick = () => {
         const sectionId = link.dataset.section;
         if (sectionId) {
           this.setActiveSection(sectionId);
         }
-      });
+      };
+
+      this.navigationLinkClickHandlers.set(link, handleLinkClick);
+      link.addEventListener('click', handleLinkClick);
     });
 
     this.windowRef.addEventListener('scroll', this.queueScrollUpdate, {
@@ -41,6 +48,22 @@ export class SectionSpyController {
     this.windowRef.addEventListener('hashchange', this.handleHashChange);
 
     this.recalculateActiveSection();
+    this.isInitialized = true;
+  }
+
+  destroy() {
+    if (!this.isInitialized) return;
+
+    this.windowRef.removeEventListener('scroll', this.queueScrollUpdate);
+    this.windowRef.removeEventListener('resize', this.handleResize);
+    this.windowRef.removeEventListener('hashchange', this.handleHashChange);
+
+    this.navigationLinkClickHandlers.forEach((handler, link) => {
+      link.removeEventListener('click', handler);
+    });
+
+    this.navigationLinkClickHandlers.clear();
+    this.isInitialized = false;
   }
 
   syncHeaderHeight() {
@@ -107,7 +130,13 @@ export class SectionSpyController {
       ),
       10
     );
-    const markerY = Number.isFinite(headerHeight) ? headerHeight + 24 : 120;
+    const headerMarkerY = Number.isFinite(headerHeight)
+      ? headerHeight + SECTION_SPY_MIN_TRIGGER_GAP
+      : 120;
+    const viewportMarkerY = Math.round(
+      this.windowRef.innerHeight * SECTION_SPY_VIEWPORT_TRIGGER_RATIO
+    );
+    const markerY = Math.max(headerMarkerY, viewportMarkerY);
 
     let fallbackSectionId = firstSectionId;
 

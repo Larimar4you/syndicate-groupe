@@ -5,7 +5,7 @@
   --color-black: #121417;
   --color-black-50: rgba(18, 20, 23, 0.5);
   --color-green: #4dc274;
-  --color-green-dark: #3da863;
+  --color-green-dark: #38ae5f;
   --color-white: #ffffff;
   --color-mint-green: #bee8cc;
   --color-light-gray: #f3f5f6;
@@ -59,13 +59,13 @@ html {
   justify-content: center;
   align-items: center;
 
-  height: 60px;
   border-radius: 12px;
+  padding: 14px;
 
   font-family: var(--font-main);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 1.71429;
 
   color: var(--color-white);
   background-color: var(--color-green);
@@ -73,8 +73,17 @@ html {
   transition: background-color var(--transition);
 }
 
+@media screen and (min-width: 768px) {
+  .button {
+      font-size: 18px;
+      line-height: 1.55556;
+      padding: 16px;
+    }
+}
+
 .button:hover,
 .button:focus {
+  color: var(--color-white);
   background-color: var(--color-green-dark);
 }
 

@@ -1,67 +1,246 @@
-1.Після клонування проекту відкриваємо його у vs code відкриваємо гіт баш
-термінал
+# Syndicate — English Excellence
 
-Прописуємо 'npm i'- це встановлює залежності для нашого збирача далі ми
-запускаємо сервер збирача у себе на пк
+> A multilingual landing page for an English language learning platform, built
+> with Vanilla JavaScript and Vite.
 
-2.Прописуємо 'npm run dev'
+**Live demo:** https://larimar4you.github.io/syndicate-groupe/
 
-В консолі буде повідомлення з лінком на живу сторінку ➜ Local:
-http://localhost:5173/syndicate-groupe/
+---
 
-Використовуємо тільки цей лінк.
+## Tech Stack
 
-Через лайв сервер працювати НЕ буде
+| Layer      | Technology                                          | Purpose                                     |
+| ---------- | --------------------------------------------------- | ------------------------------------------- |
+| Build tool | [Vite 5](https://vitejs.dev/)                       | Dev server, bundling, HMR                   |
+| JavaScript | Vanilla ES Modules                                  | No framework — pure JS                      |
+| Carousel   | [Embla Carousel 8](https://www.embla-carousel.com/) | Touch-enabled sliders                       |
+| CSS        | Vanilla CSS3 + PostCSS                              | No preprocessor                             |
+| Templating | vite-plugin-html-inject                             | HTML partial inclusion                      |
+| i18n       | Custom service                                      | `localStorage`-backed, DOM attribute-driven |
+| Deployment | GitHub Pages                                        | Auto-deploy on push to `main`               |
 
-Тепер сервер запущено. В цій вкладці терміналу НЕ МОЖНО ДАЛІ ПРАЦЮВАТИ
+---
 
-Відкриваємо нову вкладку терміналу (через плюсик)
+## Prerequisites
 
-<!-- Тепер потрібно створити нову гілку в гіт для роботи:
+| Tool        | Version                   | Check           |
+| ----------- | ------------------------- | --------------- |
+| **Node.js** | ≥ 18.x (LTS recommended)  | `node -v`       |
+| **npm**     | ≥ 9.x (bundled with Node) | `npm -v`        |
+| **Git**     | any modern                | `git --version` |
 
-- Прописуємо: 'git switch -c НАЗВА_ГІЛКИ '
+> Download Node.js: https://nodejs.org/en/download
 
-.. --> вже зроблено
+---
 
-3.Переходимо у свою гілку: git switch feature/НАЗВА_ГІЛКИ Після цього працюємо у
-відповідному partial.
+## Getting Started
 
-Після завершення роботи робимо: ' git add .', 'git commit -m "НАЗВА КОМІТУ"',
-'git push'.
+```bash
+# 1. Clone the repository
+git clone https://github.com/Larimar4you/syndicate-groupe.git
+cd syndicate-groupe
 
-Якщо гілка ще не була запушена (тільки при першому пуші), Git запропонує
+# 2. Install dependencies
+npm install
 
-команду: git push --set-upstream origin feature/НАЗВА_ГІЛКИ Скопіюйте та
-виконайте її.
+# 3. Start the dev server
+npm run dev
+```
 
-Тут будьте УВАЖНІ!!!!!! git push не спрацює! треба додати гілку на гіт
+Open **http://localhost:5173/syndicate-groupe/** in your browser.
 
-!!!! Дуже важливо! Оновлюємо main перед створенням Pull Request Щоб проект не
-«зʼїхав» і не було конфліктів, перед тим як створювати PR, потрібно оновити свою
-гілку.
+> **Important:** Use only the Vite dev server URL above. Do NOT use the VS Code
+> Live Server extension — it will not work correctly.
 
-1.Переходимо в main: 'git switch main'.
+### Available Scripts
 
-2.Забираємо останні зміни з GitHub:'git pull '.
+```bash
+npm run dev      # Start development server with HMR
+npm run build    # Build for production → ./dist
+npm run preview  # Locally preview the production build
+```
 
-3.Повертаємось у свою гілку:'git switch НАЗВА*ВАШОЇ*ГІЛКИ'.
+---
 
-4.Зливаємо оновлений main у свою гілку: 'git merge main'.
+## Project Structure
 
-Якщо є конфлікти — виправляємо. Потім: 'git add .', 'git commit -m "fix merge"',
-'git push'.
+```
+syndicate-groupe/
+│
+├── src/                          # All source code
+│   ├── index.html                # Entry point — assembles partials via <load>
+│   │
+│   ├── partials/                 # HTML sections (injected at build time)
+│   │   ├── header.html
+│   │   ├── hero.html
+│   │   ├── about.html
+│   │   ├── lessons.html
+│   │   ├── proposal.html
+│   │   ├── teachers.html
+│   │   ├── application.html
+│   │   ├── reviews.html
+│   │   └── footer.html
+│   │
+│   ├── js/
+│   │   ├── main.js               # App bootstrap: i18n + header + carousels
+│   │   ├── scroll.js             # Scroll utilities
+│   │   ├── to-top.js             # Back-to-top button
+│   │   │
+│   │   ├── i18n/                 # Internationalization system
+│   │   │   ├── bootstrap.js      # Service factory (dependency injection)
+│   │   │   ├── service.js        # I18nService — core logic
+│   │   │   ├── translator.js     # Dictionary lookup
+│   │   │   ├── storage.js        # localStorage wrapper (Result pattern)
+│   │   │   ├── dom-binder.js     # Applies translations via data-i18n attrs
+│   │   │   ├── language-policy.js# Language normalisation & browser locale map
+│   │   │   ├── translations.js   # UK / EN dictionaries
+│   │   │   └── constants.js      # Language codes, storage keys
+│   │   │
+│   │   ├── carousel/             # Embla-based carousel system
+│   │   │   ├── carousel.js       # Carousel class
+│   │   │   ├── constants.js      # Breakpoints & options
+│   │   │   ├── dot-navigation.js # Dot indicators
+│   │   │   └── slide-settings.js # Responsive slide count logic
+│   │   │
+│   │   └── header/               # Sticky header & navigation
+│   │       ├── header-controller.js
+│   │       ├── section-spy-controller.js   # Active link on scroll
+│   │       ├── language-dropdown-controller.js
+│   │       └── mobile-menu-controller.js
+│   │
+│   ├── css/
+│   │   ├── main.css              # Master stylesheet (imports all below)
+│   │   ├── reset.css / base.css  # Custom reset & design tokens
+│   │   ├── modern-normalize.css
+│   │   └── [section].css         # One file per section/component
+│   │
+│   └── img/                      # Images, grouped by section
+│       ├── hero/
+│       ├── proposal/
+│       ├── teachers/
+│       ├── application/
+│       ├── reviews/
+│       └── sprite.svg            # SVG icon sprite
+│
+├── assets/
+│   └── favicon.ico
+│
+├── .github/workflows/
+│   ├── static.yml                # GitHub Pages deployment
+│   └── validate-w3c.yml          # W3C HTML validation
+│
+├── vite.config.js                # Vite configuration
+├── .prettierrc.json
+├── .editorconfig
+└── package.json
+```
 
-Створення Pull Request: Заходимо на GitHub → відкриваємо свою гілку → створюємо
-Pull Request. (Як це зробити — є відео в Slack.)
+---
 
-Отримуємо ревʼю від тімліда. Якщо є помилки — виправляємо і повторюємо push. PR
-оновиться автоматично.
+## Architecture Overview
 
-Отримуємо ревью від тім ліда, якщо є помилки - виправляємо і повторюємо пуш
+```
+┌─────────────────────────────────────────────────────────┐
+│                     index.html                          │
+│   <load src="partials/header.html" />                   │
+│   <load src="partials/hero.html" />  ...                │
+└────────────────────┬────────────────────────────────────┘
+                     │ vite-plugin-html-inject
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│                      main.js                            │
+│                                                         │
+│  ┌───────────────┐  ┌──────────────┐  ┌─────────────┐  │
+│  │  i18n system  │  │    Header    │  │  Carousels  │  │
+│  │               │  │              │  │             │  │
+│  │ I18nService   │  │ SectionSpy   │  │   Embla     │  │
+│  │ I18nTranslator│  │ MobileMenu   │  │  + Dots     │  │
+│  │ I18nDomBinder │  │ LangDropdown │  │  + Slides   │  │
+│  │ I18nStorage   │  │              │  │             │  │
+│  └──────┬────────┘  └──────────────┘  └─────────────┘  │
+│         │                                               │
+│    localStorage                                         │
+│    data-i18n attrs                                      │
+└─────────────────────────────────────────────────────────┘
+                     │ vite build
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│                   dist/                                 │
+│          (deployed to GitHub Pages)                     │
+└─────────────────────────────────────────────────────────┘
+```
 
-Коли тім лід проведе вашу гілку в main проекту, Вам потрібно видалити гілку у
-себе в vs code
+---
 
-Прописуємо: 'git switch main'+'git branch -d feature/НАЗВА_ГІЛКИ '
+## Git Workflow
 
-Все. Ви молодець 😊
+### Start a new feature
+
+```bash
+# Always branch from an up-to-date main
+git switch main
+git pull
+git switch -c feature/FEATURE_NAME
+```
+
+### Save and push your work
+
+```bash
+git add .
+git commit -m "feat(section): describe what you did"
+
+# First push — set upstream
+git push --set-upstream origin feature/FEATURE_NAME
+
+# Subsequent pushes
+git push
+```
+
+### Sync with main before creating a PR
+
+```bash
+git switch main
+git pull
+git switch feature/FEATURE_NAME
+git merge main
+# Resolve any conflicts, then:
+git add .
+git commit -m "fix: resolve merge conflicts"
+git push
+```
+
+### After your PR is merged
+
+```bash
+git switch main
+git pull
+git branch -d feature/FEATURE_NAME
+```
+
+---
+
+## Deployment
+
+The project is automatically deployed to **GitHub Pages** on every push to
+`main`.
+
+```
+Push to main
+    └─► GitHub Actions (.github/workflows/static.yml)
+            └─► npm run build
+                    └─► Deployed to https://larimar4you.github.io/syndicate-groupe/
+```
+
+---
+
+## Languages
+
+The site ships with two languages, switchable at runtime:
+
+| Code | Language  |
+| ---- | --------- |
+| `uk` | Ukrainian |
+| `en` | English   |
+
+Language preference is persisted in `localStorage`. Translations are defined in
+`src/js/i18n/translations.js`.
