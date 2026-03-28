@@ -91,7 +91,7 @@
   left: 0;
   width: 37px;
   height: 2px;
-  background-color: var(--green);
+  background-color: var(--color-green);
   transform: translateX(-101%);
   transition: transform var(--transition);
 }
