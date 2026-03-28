@@ -42,7 +42,9 @@ export class I18nService {
 
     if (persistedResult.ok && persistedResult.value !== null) {
       return this.policy.normalize(persistedResult.value);
-    } else {
+    }
+
+    if (!persistedResult.ok) {
       this.logger.error(
         '[i18n] Failed to read persisted language',
         persistedResult.error

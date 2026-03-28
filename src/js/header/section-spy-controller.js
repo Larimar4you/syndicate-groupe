@@ -130,13 +130,30 @@ export class SectionSpyController {
       ),
       10
     );
+
     const headerMarkerY = Number.isFinite(headerHeight)
       ? headerHeight + SECTION_SPY_MIN_TRIGGER_GAP
       : 120;
+
     const viewportMarkerY = Math.round(
       this.windowRef.innerHeight * SECTION_SPY_VIEWPORT_TRIGGER_RATIO
     );
+
     const markerY = Math.max(headerMarkerY, viewportMarkerY);
+    const documentElementHeight = this.documentRef.documentElement.scrollHeight;
+
+    const bodyHeight = this.documentRef.body
+      ? this.documentRef.body.scrollHeight
+      : 0;
+
+    const pageHeight = Math.max(documentElementHeight, bodyHeight);
+    const bottomThreshold = 2;
+
+    const scrolledToBottom =
+      this.windowRef.scrollY + this.windowRef.innerHeight >=
+      pageHeight - bottomThreshold;
+
+    if (scrolledToBottom) return lastSectionId;
 
     let fallbackSectionId = firstSectionId;
 
@@ -154,12 +171,6 @@ export class SectionSpyController {
         fallbackSectionId = sectionId;
       }
     }
-
-    const scrolledToBottom =
-      Math.ceil(this.windowRef.scrollY + this.windowRef.innerHeight) >=
-      this.documentRef.documentElement.scrollHeight;
-
-    if (scrolledToBottom) return lastSectionId;
 
     return fallbackSectionId;
   }
