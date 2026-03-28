@@ -12,8 +12,12 @@
   overflow: hidden;
 
   background-image:
-    linear-gradient(95.97deg, rgba(0, 0, 0, 0.4) 36.36%, rgba(0, 0, 0, 0) 51.43%),
-    url("../img/hero/studing-girl.jpg");
+    linear-gradient(
+      95.97deg,
+      rgba(0, 0, 0, 0.4) 36.36%,
+      rgba(0, 0, 0, 0) 51.43%
+    ),
+    url('../images/hero/studing-girl.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -79,7 +83,9 @@
   background-color: var(--color-white);
   color: var(--color-green);
 
-  transition: background-color 250ms ease, color 250ms ease;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 .hero-scroll-btn:hover,
@@ -94,7 +100,7 @@
   display: block;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .hero {
     padding-top: 32px;
   }
@@ -102,11 +108,11 @@
   .hero-container {
     max-width: 704px;
     min-height: 857px;
-    padding: 260px 184px 295PX 32px;
+    padding: 260px 184px 295px 32px;
     background-position: 68% center;
     background-image:
-      linear-gradient(90.0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%),
-      url("../img/hero/studing-girl-tablet.jpg");
+      linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%),
+      url('../images/hero/studing-girl-tablet.jpg');
   }
 
   .hero-content {
@@ -124,7 +130,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .hero {
     padding-top: 8px;
   }
@@ -136,8 +142,8 @@
     border-radius: 16px;
 
     background-image:
-      linear-gradient(90.0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%),
-      url("../img/hero/studing-girl-mobile.jpg");
+      linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%),
+      url('../images/hero/studing-girl-mobile.jpg');
     background-position: center;
   }
 

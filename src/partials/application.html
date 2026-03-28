@@ -3,7 +3,9 @@
     <div class="application-heading">
       <h2 class="application-title">
         <span data-i18n="application.title.before">Leave an</span>
-        <span class="text-marker" data-i18n="application.title.marker">application</span>
+        <span class="text-marker" data-i18n="application.title.marker"
+          >application</span
+        >
       </h2>
       <p class="application-subtitle" data-i18n="application.subtitle">
         Please use the form below to contact us. Enter your name, email, and
@@ -15,7 +17,7 @@
       <div class="application-image-wrapper">
         <img
           class="application-image"
-          src="/img/application/application-girl.webp"
+          src="./images/application/application-girl.webp"
           alt="Girl studying online"
           data-i18n-attr="alt:application.imageAlt"
           width="492"
@@ -33,7 +35,7 @@
       </div>
 
       <div class="application-form-wrapper">
-        <form class="application-form" novalidate>
+        <form class="application-form">
           <input
             class="application-input"
             type="text"
@@ -51,6 +53,7 @@
             placeholder="Email"
             data-i18n-attr="placeholder:application.form.placeholders.email"
             required
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
           />
 
           <input
@@ -72,49 +75,104 @@
           ></textarea>
 
           <fieldset class="application-teachers">
-            <legend class="application-legend" data-i18n="application.form.teacherLegend">Choose a teacher</legend>
+            <legend
+              class="application-legend"
+              data-i18n="application.form.teacherLegend"
+            >
+              Choose a teacher
+            </legend>
 
             <ul class="application-teachers-list">
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Maria" checked />
+                  <input
+                    class="teacher-radio"
+                    type="radio"
+                    name="teacher"
+                    value="Maria"
+                    checked
+                  />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name" data-i18n="application.form.teacherNames.maria">Maria</span>
+                  <span
+                    class="teacher-name"
+                    data-i18n="application.form.teacherNames.maria"
+                    >Maria</span
+                  >
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Artem" />
+                  <input
+                    class="teacher-radio"
+                    type="radio"
+                    name="teacher"
+                    value="Artem"
+                  />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name" data-i18n="application.form.teacherNames.artem">Artem</span>
+                  <span
+                    class="teacher-name"
+                    data-i18n="application.form.teacherNames.artem"
+                    >Artem</span
+                  >
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Ilona" />
+                  <input
+                    class="teacher-radio"
+                    type="radio"
+                    name="teacher"
+                    value="Ilona"
+                  />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name" data-i18n="application.form.teacherNames.ilona">Ilona</span>
+                  <span
+                    class="teacher-name"
+                    data-i18n="application.form.teacherNames.ilona"
+                    >Ilona</span
+                  >
                 </label>
               </li>
 
               <li>
                 <label class="teacher-label">
-                  <input class="teacher-radio" type="radio" name="teacher" value="Volodymyr" />
+                  <input
+                    class="teacher-radio"
+                    type="radio"
+                    name="teacher"
+                    value="Volodymyr"
+                  />
                   <span class="teacher-mark"></span>
-                  <span class="teacher-name" data-i18n="application.form.teacherNames.volodymyr">Volodymyr</span>
+                  <span
+                    class="teacher-name"
+                    data-i18n="application.form.teacherNames.volodymyr"
+                    >Volodymyr</span
+                  >
                 </label>
               </li>
             </ul>
           </fieldset>
 
-          <button class="application-submit" type="submit" data-i18n="application.form.submit">Send</button>
+          <button
+            class="application-submit"
+            type="submit"
+            data-i18n="application.form.submit"
+          >
+            Send
+          </button>
 
           <p class="application-privacy">
-            <span data-i18n="application.form.privacy.before">By clicking on "Send" button, you agree to our</span>
-            <a href="#" data-i18n="application.form.privacy.link">Privacy Policy</a>
-            <span data-i18n="application.form.privacy.after">and allow Promodo to use this information for marketing purposes.</span>
+            <span data-i18n="application.form.privacy.before"
+              >By clicking on "Send" button, you agree to our</span
+            >
+            <a href="#" data-i18n="application.form.privacy.link"
+              >Privacy Policy</a
+            >
+            <span data-i18n="application.form.privacy.after"
+              >and allow Promodo to use this information for marketing
+              purposes.</span
+            >
           </p>
         </form>
       </div>
