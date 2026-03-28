@@ -23,6 +23,14 @@
       <path
         d="m14.869 10.869-8 8c-.289.29-.468.689-.468 1.131s.179.842.468 1.131.689.468 1.131.468.842-.179 1.131-.468L16 14.262l6.869 6.869c.29.289.689.468 1.131.468s.842-.179 1.131-.468.468-.689.468-1.131-.179-.842-.468-1.131l-8-8c-.29-.289-.689-.468-1.131-.468s-.842.179-1.131.468" />
     </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 5v12m0 0-5-5m5 5 5-5"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
     <symbol id="icon-check" viewBox="0 0 10 8" fill="none">
       <path d="m8.75.75-5.5 6-2.5-2.727" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
         stroke-linejoin="round" />
