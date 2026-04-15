@@ -228,7 +228,7 @@ The project is automatically deployed to **GitHub Pages** on every push to
 Push to main
     └─► GitHub Actions (.github/workflows/static.yml)
             └─► npm run build
-                    └─► Deployed to https://larimar4you.github.io/syndicate-groupe/
+                    └─► Deployed to https://larimar4you.github.io/semantic-syndicate/
 ```
 
 ---
