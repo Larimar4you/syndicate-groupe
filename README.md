@@ -3,7 +3,7 @@
 > A multilingual landing page for an English language learning platform, built
 > with Vanilla JavaScript and Vite.
 
-**Live demo:** https://larimar4you.github.io/syndicate-groupe/
+**Live demo:** https://larimar4you.github.io/semantic-syndicate/
 
 ---
 
@@ -37,8 +37,8 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Larimar4you/syndicate-groupe.git
-cd syndicate-groupe
+git clone https://github.com/Larimar4you/semantic-syndicate.git
+cd semantic-syndicate
 
 # 2. Install dependencies
 npm install
@@ -47,7 +47,7 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:5173/syndicate-groupe/** in your browser.
+Open **http://localhost:5173/semantic-syndicate/** in your browser.
 
 > **Important:** Use only the Vite dev server URL above. Do NOT use the VS Code
 > Live Server extension — it will not work correctly.
@@ -65,7 +65,7 @@ npm run preview  # Locally preview the production build
 ## Project Structure
 
 ```
-syndicate-groupe/
+semantic-syndicate/
 │
 ├── src/                          # All source code
 │   ├── index.html                # Entry point — assembles partials via <load>
